@@ -10,6 +10,15 @@
     <title>Order food & drinks</title>
 </head>
 <body>
+<?php
+    // if($message_sent);
+?>
+    <!-- <h3>Thanks we'll be in touch</h3> -->
+
+<?php
+    // else; 
+?>      
+
 <div class="container">
     <h1>Order food in restaurant "the Personal Ham Processors"</h1>
     <nav>
@@ -22,11 +31,11 @@
             </li>
         </ul>
     </nav>
-    <form method="post">
+    <form method="post" action="index.php">
         <div class="form-row">
             <div class="form-group col-md-6">
                 <label for="email">E-mail:</label>
-                <input type="text" id="email" name="email" class="form-control"/>
+                <input type="email" id="email" name="email" class="form-control"/>
             </div>
             <div></div>
         </div>
@@ -37,21 +46,21 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="street">Street:</label>
-                    <input type="text" name="street" id="street" class="form-control">
+                    <input type="text" name="street" id="street" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="streetnumber">Street number:</label>
-                    <input type="text" id="streetnumber" name="streetnumber" class="form-control">
+                    <input type="text" id="streetnumber" name="streetnumber" class="form-control" required>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="city">City:</label>
-                    <input type="text" id="city" name="city" class="form-control">
+                    <input type="text" id="city" name="city" class="form-control" required>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="zipcode">Zipcode</label>
-                    <input type="text" id="zipcode" name="zipcode" class="form-control">
+                    <input type="text" id="zipcode" name="zipcode" class="form-control" required>
                 </div>
             </div>
         </fieldset>

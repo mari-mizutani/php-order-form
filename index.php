@@ -35,3 +35,53 @@ $products = [
 $totalValue = 0;
 
 require 'form-view.php';
+
+
+
+$userEmail = $_POST['email'];
+$userStreet = $_POST['street'];
+$userStreetNumber = $_POST['streetnumber'];
+$userCity = $_POST['city'];
+$userZipcode = $_POST['zipcode'];
+
+$to = "example@example.com";
+$body = "";
+$body .= "Email: " . $userEmail. "\r\n";
+$body .= "Street: " . $userStreet. "\r\n";
+$body .= "Street Number: " . $userStreetNumber. "\r\n";
+$body .= "City: " . $userCity. "\r\n";
+$body .= "Zipcode: " . $userZipcode. "\r\n";
+
+mail($to,$body);
+
+
+$message_sent = false;
+// make sure if it's not empty
+if(isset($_POST['email']) && $_POST['email'] != '') {
+
+    // Validate e-mail
+    if ( filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ){
+
+        //submit the form
+        $userEmail = $_POST['email'];
+        $userStreet = $_POST['street'];
+        $userStreetNumber = $_POST['streetnumber'];
+        $userCity = $_POST['city'];
+        $userZipcode = $_POST['zipcode'];
+        
+        $to = "example@example.com";
+        $body = "";
+        $body .= "Email: " . $userEmail. "\r\n";
+        $body .= "Street: " . $userStreet. "\r\n";
+        $body .= "Street Number: " . $userStreetNumber. "\r\n";
+        $body .= "City: " . $userCity. "\r\n";
+        $body .= "Zipcode: " . $userZipcode. "\r\n";
+        
+        // mail($to,$body);
+        $message_sent = true;
+    }
+    else{
+        $invalid_class_name = "form_invalid";
+    }
+
+}
