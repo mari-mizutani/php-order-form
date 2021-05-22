@@ -75,6 +75,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $zipcodeErr = "Zipcode is required";
     }else{
         $zipcode = test_input($_POST["zipcode"]);
+        //street number and zipcode must 
+        if (!is_numeric($zipcode)){
+            $zipcodeErr = "Invalid zipcode";
+        } 
     }      
     
 }
@@ -87,5 +91,3 @@ return $data;
 }
 
 require 'form-view.php';
-//street number and zipcode must 
-// if (is_numeric($number)) 
