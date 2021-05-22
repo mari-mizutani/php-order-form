@@ -34,54 +34,58 @@ $products = [
 
 $totalValue = 0;
 
-require 'form-view.php';
 
 
-
-$userEmail = $_POST['email'];
-$userStreet = $_POST['street'];
-$userStreetNumber = $_POST['streetnumber'];
-$userCity = $_POST['city'];
-$userZipcode = $_POST['zipcode'];
-
-$to = "example@example.com";
-$body = "";
-$body .= "Email: " . $userEmail. "\r\n";
-$body .= "Street: " . $userStreet. "\r\n";
-$body .= "Street Number: " . $userStreetNumber. "\r\n";
-$body .= "City: " . $userCity. "\r\n";
-$body .= "Zipcode: " . $userZipcode. "\r\n";
-
-mail($to,$body);
+// define variables and set to empty values
+$emailErr = $streetErr = $streetnumberErr = $cityErr = $zipcodeErr = "";
+$email = $street = $streetnumber = $city = $zipcode = "";
 
 
-$message_sent = false;
-// make sure if it's not empty
-if(isset($_POST['email']) && $_POST['email'] != '') {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    // Validate e-mail
-    if ( filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) ){
-
-        //submit the form
-        $userEmail = $_POST['email'];
-        $userStreet = $_POST['street'];
-        $userStreetNumber = $_POST['streetnumber'];
-        $userCity = $_POST['city'];
-        $userZipcode = $_POST['zipcode'];
-        
-        $to = "example@example.com";
-        $body = "";
-        $body .= "Email: " . $userEmail. "\r\n";
-        $body .= "Street: " . $userStreet. "\r\n";
-        $body .= "Street Number: " . $userStreetNumber. "\r\n";
-        $body .= "City: " . $userCity. "\r\n";
-        $body .= "Zipcode: " . $userZipcode. "\r\n";
-        
-        // mail($to,$body);
-        $message_sent = true;
-    }
-    else{
-        $invalid_class_name = "form_invalid";
+    if ( empty($_POST["email"]) ){
+        $emailErr = "Email is required";
+    }else{
+        $email = test_input($_POST["email"]);
+        //check if e-mail address is well-formed
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $emailErr = "Invalid email format";
+        }
     }
 
+    if ( empty($_POST["street"]) ){
+        $streetErr = "Street name is required";
+    }else{
+        $street = test_input($_POST["street"]);
+    }
+
+    if ( empty($_POST["streetnumber"]) ){
+        $streetnumberErr = "Street number is required";
+    }else{
+        $streetnumber = test_input($_POST["streetnumber"]);
+    }
+
+    if ( empty($_POST["city"]) ){
+        $cityErr = "City name is required";
+    }else{
+        $city = test_input($_POST["city"]);
+    }
+
+    if ( empty($_POST["zipcode"]) ){
+        $zipcodeErr = "Zipcode is required";
+    }else{
+        $zipcode = test_input($_POST["zipcode"]);
+    }      
+    
 }
+  
+function test_input($data) {
+$data = trim($data);
+$data = stripslashes($data);
+$data = htmlspecialchars($data);
+return $data;
+}
+
+require 'form-view.php';
+//street number and zipcode must 
+// if (is_numeric($number)) 
