@@ -23,7 +23,7 @@
         </ul>
     </nav>
 
-    <div class="alert alert-primary text-center" role="alert">
+    <div class="alert alert-primary" role="alert">
     <?php
         echo $emailErr ."<br>";
         echo $streetErr."<br>";
@@ -95,7 +95,7 @@
     .error {color: #FF0000;}
 
     .display{
-        display:none;
+        display:inline;
     }
 </style>
 </body>

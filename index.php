@@ -90,7 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
 }
 
-
+//valid info and order sent
 if( !empty($_POST["email"]) && filter_var($email, FILTER_VALIDATE_EMAIL) && 
     !empty($_POST["street"]) &&
     !empty($_POST["streetnumber"]) && is_numeric($streetnumber) &&
@@ -101,8 +101,14 @@ if( !empty($_POST["email"]) && filter_var($email, FILTER_VALIDATE_EMAIL) &&
     $mailSent = " ";
 }
 
+// Set session variables
+$_SESSION["email"] = $_POST["email"];
+$_SESSION["street"] = $_POST["street"];
+$_SESSION["streetnumber"] = $_POST["streetnumber"];
+$_SESSION["city"] = $_POST["city"];
+$_SESSION["zipcode"] = $_POST["zipcode"];
 
-  
+
 function test_input($data) {
 $data = trim($data);
 $data = stripslashes($data);
