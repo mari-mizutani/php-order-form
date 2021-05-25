@@ -23,17 +23,36 @@
         </ul>
     </nav>
 
-    <div class="alert alert-primary" role="alert">
-    <?php
-        echo $emailErr ."<br>";
-        echo $streetErr."<br>";
-        echo $streetnumberErr."<br>";
-        echo $cityErr."<br>";
-        echo $zipcodeErr."<br>";
-        echo $mailSent;
-    ?>
+    <!-- error message -->
+    <div class="alert alert-primary <?php if( empty($emailErr)){echo "display";}?> " role="alert">
+    <?php echo $emailErr; ?>
     </div>
 
+    <div class="alert alert-primary <?php if( empty($streetErr)){echo "display";}?> " role="alert">
+    <?php echo $streetErr; ?>
+    </div>
+
+    <div class="alert alert-primary <?php if( empty($streetnumberErr)){echo "display";}?> " role="alert">
+    <?php echo $streetnumberErr; ?>
+    </div>
+
+    <div class="alert alert-primary <?php if( empty($cityErr)){echo "display";}?> " role="alert">
+    <?php echo $cityErr; ?>
+    </div>
+
+    <div class="alert alert-primary <?php if( empty($zipcodeErr)){echo "display";}?> " role="alert">
+    <?php echo $zipcodeErr; ?>
+    </div>
+
+    <div class="alert alert-primary <?php if( empty($mailSent)){echo "display";}?> " role="alert">
+    <?php echo $mailSent; ?>
+    </div>
+
+    <div class="alert alert-primary <?php if( empty($expressDelivery)){echo "display";}?> " role="alert">
+    <?php echo $expressDelivery; ?>
+    </div>
+
+    <!-- form -->
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -95,7 +114,7 @@
     .error {color: #FF0000;}
 
     .display{
-        display:inline;
+        display:none;
     }
 </style>
 </body>

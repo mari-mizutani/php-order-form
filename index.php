@@ -19,7 +19,7 @@ function whatIsHappening() {
 //your products with their price.
 
 //select food
-if ((isset($_GET["food"])) && ($_GET["food"] == 1)) {
+if ((!isset($_GET["food"])) || ($_GET["food"] == 1)) {
 $products = [
     ['name' => 'Club Ham', 'price' => 3.20],
     ['name' => 'Club Cheese', 'price' => 3],
@@ -27,7 +27,7 @@ $products = [
     ['name' => 'Club Chicken', 'price' => 4],
     ['name' => 'Club Salmon', 'price' => 5]
 ];
-}else{
+}else {
 //select drink
 $products = [
     ['name' => 'Cola', 'price' => 2],
@@ -52,7 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ( empty($_POST["email"]) ){
         $emailErr ="Email is required";
-
     }else{
         $email = test_input($_POST["email"]);
         //check if e-mail address is well-formed
@@ -101,8 +100,15 @@ if( !empty($_POST["email"]) && filter_var($email, FILTER_VALIDATE_EMAIL) &&
     !empty($_POST["streetnumber"]) && is_numeric($streetnumber) &&
     !empty($_POST["city"]) &&
     !empty($_POST["zipcode"]) && is_numeric($zipcode) ){
-        $mailSent = "Your order was sent!";
-}else{
+
+
+    if ( isset($_POST["products"])) {
+        $mailSent = "Your order was sent! Expected delivery time is 2hr.";
+    }elseif( isset($_POST["express_delivery"]) ){
+        $expressDelivery = "Your order was sent! Expected delivery time is 45min.";
+    }
+}
+else{
     $mailSent = "";
 }
 
@@ -114,6 +120,8 @@ if( isset($_POST["submit"]) ){
     $_SESSION["city"] = $_POST["city"];
     $_SESSION["zipcode"] = $_POST["zipcode"];
 }
+
+//delivery time
 
 
 function test_input($data) {
