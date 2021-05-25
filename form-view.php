@@ -23,13 +23,14 @@
         </ul>
     </nav>
 
-    <div class="alert alert-primary" role="alert">
+    <div class="alert alert-primary text-center" role="alert">
     <?php
         echo $emailErr ."<br>";
         echo $streetErr."<br>";
         echo $streetnumberErr."<br>";
         echo $cityErr."<br>";
         echo $zipcodeErr."<br>";
+        echo $mailSent;
     ?>
     </div>
 

@@ -89,6 +89,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }      
     
 }
+
+
+if( !empty($_POST["email"]) && filter_var($email, FILTER_VALIDATE_EMAIL) && 
+    !empty($_POST["street"]) &&
+    !empty($_POST["streetnumber"]) && is_numeric($streetnumber) &&
+    !empty($_POST["city"]) &&
+    !empty($_POST["zipcode"]) && is_numeric($zipcode) ){
+        $mailSent = "Your order was sent!";
+}else{
+    $mailSent = " ";
+}
+
+
   
 function test_input($data) {
 $data = trim($data);
@@ -97,8 +110,5 @@ $data = htmlspecialchars($data);
 return $data;
 }
 
-function showDiv(){
-    
-}
 
 require 'form-view.php';
