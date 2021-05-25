@@ -10,7 +10,6 @@
     <title>Order food & drinks</title>
 </head>
 <body>
-
 <div class="container">
     <h1>Order food in restaurant "the Personal Ham Processors"</h1>
     <nav>
@@ -23,10 +22,21 @@
             </li>
         </ul>
     </nav>
+
+    <div class="alert alert-primary" role="alert">
+    <?php
+        echo $emailErr ."<br>";
+        echo $streetErr."<br>";
+        echo $streetnumberErr."<br>";
+        echo $cityErr."<br>";
+        echo $zipcodeErr."<br>";
+    ?>
+    </div>
+
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="email">E-mail:</label><span class="error">* <?php echo $emailErr;?></span>
+                <label for="email">E-mail:</label><span class="error">*</span>
                 <input type="text" id="email" name="email" class="form-control" value="<?php echo $email;?>">
             </div>
         </div>
@@ -36,21 +46,21 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="street">Street:</label><span class="error">* <?php echo $streetErr;?></span>
+                    <label for="street">Street:</label><span class="error">*</span>
                     <input type="text" name="street" id="street" class="form-control" value="<?php echo $street;?>">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="streetnumber">Street number:</label><span class="error">* <?php echo $streetnumberErr;?></span>
+                    <label for="streetnumber">Street number:</label><span class="error">*</span>
                     <input type="text" id="streetnumber" name="streetnumber" class="form-control" value="<?php echo $streetnumber;?>">
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="city">City:</label><span class="error">* <?php echo $cityErr;?></span>
+                    <label for="city">City:</label><span class="error">*</span>
                     <input type="text" id="city" name="city" class="form-control" value="<?php echo $city;?>">
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="zipcode">Zipcode</label><span class="error">* <?php echo $zipcodeErr;?></span>
+                    <label for="zipcode">Zipcode</label><span class="error">*</span>
                     <input type="text" id="zipcode" name="zipcode" class="form-control" value="<?php echo $zipcode;?>">
                 </div>
             </div>
@@ -70,7 +80,7 @@
             Express delivery (+ 5 EUR) 
         </label>
             
-        <button type="submit" class="btn btn-primary">Order!</button>
+        <button type="submit" class="btn btn-primary" onclick="bootstrapAlert()">Order!</button>
     </form>
     
 
@@ -82,6 +92,10 @@
         text-align: center;
     }
     .error {color: #FF0000;}
+
+    .display{
+        display:none;
+    }
 </style>
 </body>
 </html>

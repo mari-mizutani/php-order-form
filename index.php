@@ -41,14 +41,17 @@ $emailErr = $streetErr = $streetnumberErr = $cityErr = $zipcodeErr = "";
 $email = $street = $streetnumber = $city = $zipcode = "";
 
 
+
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ( empty($_POST["email"]) ){
-        $emailErr = "Email is required";
+        $emailErr ="Email is required";
+
     }else{
         $email = test_input($_POST["email"]);
         //check if e-mail address is well-formed
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        if ( !filter_var($email, FILTER_VALIDATE_EMAIL) ) {
             $emailErr = "Invalid email format";
         }
     }
@@ -63,6 +66,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $streetnumberErr = "Street number is required";
     }else{
         $streetnumber = test_input($_POST["streetnumber"]);
+        //make sure if street numbers are only numbers
+        if (!is_numeric($streetnumber)){
+            $streetnumberErr = "Invalid Street number";
+        } 
     }
 
     if ( empty($_POST["city"]) ){
@@ -75,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $zipcodeErr = "Zipcode is required";
     }else{
         $zipcode = test_input($_POST["zipcode"]);
-        //street number and zipcode must 
+        //make sure if zipcode is only numbers
         if (!is_numeric($zipcode)){
             $zipcodeErr = "Invalid zipcode";
         } 
@@ -88,6 +95,10 @@ $data = trim($data);
 $data = stripslashes($data);
 $data = htmlspecialchars($data);
 return $data;
+}
+
+function showDiv(){
+    
 }
 
 require 'form-view.php';
