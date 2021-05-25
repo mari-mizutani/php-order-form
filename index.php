@@ -17,6 +17,9 @@ function whatIsHappening() {
 }
 
 //your products with their price.
+
+//select food
+if ((isset($_GET["food"])) && ($_GET["food"] == 1)) {
 $products = [
     ['name' => 'Club Ham', 'price' => 3.20],
     ['name' => 'Club Cheese', 'price' => 3],
@@ -24,13 +27,15 @@ $products = [
     ['name' => 'Club Chicken', 'price' => 4],
     ['name' => 'Club Salmon', 'price' => 5]
 ];
-
+}else{
+//select drink
 $products = [
     ['name' => 'Cola', 'price' => 2],
     ['name' => 'Fanta', 'price' => 2],
     ['name' => 'Sprite', 'price' => 2],
     ['name' => 'Ice-tea', 'price' => 3],
 ];
+}
 
 $totalValue = 0;
 
@@ -98,15 +103,17 @@ if( !empty($_POST["email"]) && filter_var($email, FILTER_VALIDATE_EMAIL) &&
     !empty($_POST["zipcode"]) && is_numeric($zipcode) ){
         $mailSent = "Your order was sent!";
 }else{
-    $mailSent = " ";
+    $mailSent = "";
 }
 
 // Set session variables
-$_SESSION["email"] = $_POST["email"];
-$_SESSION["street"] = $_POST["street"];
-$_SESSION["streetnumber"] = $_POST["streetnumber"];
-$_SESSION["city"] = $_POST["city"];
-$_SESSION["zipcode"] = $_POST["zipcode"];
+if( isset($_POST["submit"]) ){
+    $_SESSION["email"] = $_POST["email"];
+    $_SESSION["street"] = $_POST["street"];
+    $_SESSION["streetnumber"] = $_POST["streetnumber"];
+    $_SESSION["city"] = $_POST["city"];
+    $_SESSION["zipcode"] = $_POST["zipcode"];
+}
 
 
 function test_input($data) {
